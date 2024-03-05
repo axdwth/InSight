@@ -1,0 +1,578 @@
+package org.apache.jsp.User;
+
+import javax.servlet.*;
+import javax.servlet.http.*;
+import javax.servlet.jsp.*;
+import java.sql.ResultSet;
+
+public final class Cart_jsp extends org.apache.jasper.runtime.HttpJspBase
+    implements org.apache.jasper.runtime.JspSourceDependent {
+
+  private static final JspFactory _jspxFactory = JspFactory.getDefaultFactory();
+
+  private static java.util.List<String> _jspx_dependants;
+
+  private org.glassfish.jsp.api.ResourceInjector _jspx_resourceInjector;
+
+  public java.util.List<String> getDependants() {
+    return _jspx_dependants;
+  }
+
+  public void _jspService(HttpServletRequest request, HttpServletResponse response)
+        throws java.io.IOException, ServletException {
+
+    PageContext pageContext = null;
+    HttpSession session = null;
+    ServletContext application = null;
+    ServletConfig config = null;
+    JspWriter out = null;
+    Object page = this;
+    JspWriter _jspx_out = null;
+    PageContext _jspx_page_context = null;
+
+    try {
+      response.setContentType("text/html;charset=UTF-8");
+      pageContext = _jspxFactory.getPageContext(this, request, response,
+      			null, true, 8192, true);
+      _jspx_page_context = pageContext;
+      application = pageContext.getServletContext();
+      config = pageContext.getServletConfig();
+      session = pageContext.getSession();
+      out = pageContext.getOut();
+      _jspx_out = out;
+      _jspx_resourceInjector = (org.glassfish.jsp.api.ResourceInjector) application.getAttribute("com.sun.appserv.jsp.resource.injector");
+
+      out.write('\n');
+      DB.ConnectionClass con = null;
+      synchronized (_jspx_page_context) {
+        con = (DB.ConnectionClass) _jspx_page_context.getAttribute("con", PageContext.PAGE_SCOPE);
+        if (con == null){
+          con = new DB.ConnectionClass();
+          _jspx_page_context.setAttribute("con", con, PageContext.PAGE_SCOPE);
+        }
+      }
+      out.write("\n");
+      out.write("\n");
+      out.write("<!DOCTYPE html>\n");
+      out.write("<html>\n");
+      out.write("    <head>\n");
+      out.write("        <meta http-equiv=\"Content-Type\" content=\"text/html; charset=UTF-8\">\n");
+      out.write("        <link\n");
+      out.write("            rel=\"stylesheet\"\n");
+      out.write("            href=\"https://cdnjs.cloudflare.com/ajax/libs/normalize/5.0.0/normalize.min.css\"\n");
+      out.write("            />\n");
+      out.write("        <style>\n");
+      out.write("            .product-image {\n");
+      out.write("                float: left;\n");
+      out.write("                width: 20%;\n");
+      out.write("            }\n");
+      out.write("\n");
+      out.write("            .product-details {\n");
+      out.write("                float: left;\n");
+      out.write("                width: 37%;\n");
+      out.write("            }\n");
+      out.write("\n");
+      out.write("            .product-price {\n");
+      out.write("                float: left;\n");
+      out.write("                width: 12%;\n");
+      out.write("            }\n");
+      out.write("\n");
+      out.write("            .product-quantity {\n");
+      out.write("                float: left;\n");
+      out.write("                width: 10%;\n");
+      out.write("            }\n");
+      out.write("\n");
+      out.write("            .product-removal {\n");
+      out.write("                float: left;\n");
+      out.write("                width: 9%;\n");
+      out.write("            }\n");
+      out.write("\n");
+      out.write("            .product-line-price {\n");
+      out.write("                float: left;\n");
+      out.write("                width: 12%;\n");
+      out.write("                text-align: right;\n");
+      out.write("            }\n");
+      out.write("\n");
+      out.write("            /* This is used as the traditional .clearfix class */\n");
+      out.write("            .group:before,\n");
+      out.write("            .shopping-cart:before,\n");
+      out.write("            .column-labels:before,\n");
+      out.write("            .product:before,\n");
+      out.write("            .totals-item:before,\n");
+      out.write("            .group:after,\n");
+      out.write("            .shopping-cart:after,\n");
+      out.write("            .column-labels:after,\n");
+      out.write("            .product:after,\n");
+      out.write("            .totals-item:after {\n");
+      out.write("                content: \"\";\n");
+      out.write("                display: table;\n");
+      out.write("            }\n");
+      out.write("\n");
+      out.write("            .group:after,\n");
+      out.write("            .shopping-cart:after,\n");
+      out.write("            .column-labels:after,\n");
+      out.write("            .product:after,\n");
+      out.write("            .totals-item:after {\n");
+      out.write("                clear: both;\n");
+      out.write("            }\n");
+      out.write("\n");
+      out.write("            .group,\n");
+      out.write("            .shopping-cart,\n");
+      out.write("            .column-labels,\n");
+      out.write("            .product,\n");
+      out.write("            .totals-item {\n");
+      out.write("                zoom: 1;\n");
+      out.write("            }\n");
+      out.write("\n");
+      out.write("            /* Apply clearfix in a few places */\n");
+      out.write("            /* Apply dollar signs */\n");
+      out.write("            .product .product-price:before,\n");
+      out.write("            .product .product-line-price:before,\n");
+      out.write("            .totals-value:before {\n");
+      out.write("                content: \"₹\";\n");
+      out.write("            }\n");
+      out.write("\n");
+      out.write("            /* Body/Header stuff */\n");
+      out.write("            body {\n");
+      out.write("                padding: 0px 30px 30px 20px;\n");
+      out.write("                font-family: \"HelveticaNeue-Light\", \"Helvetica Neue Light\",\n");
+      out.write("                    \"Helvetica Neue\", Helvetica, Arial, sans-serif;\n");
+      out.write("                font-weight: 100;\n");
+      out.write("            }\n");
+      out.write("\n");
+      out.write("            h1 {\n");
+      out.write("                font-weight: 100;\n");
+      out.write("            }\n");
+      out.write("\n");
+      out.write("            label {\n");
+      out.write("                color: #aaa;\n");
+      out.write("            }\n");
+      out.write("\n");
+      out.write("            .shopping-cart {\n");
+      out.write("                margin-top: -45px;\n");
+      out.write("            }\n");
+      out.write("\n");
+      out.write("            /* Column headers */\n");
+      out.write("            .column-labels label {\n");
+      out.write("                padding-bottom: 15px;\n");
+      out.write("                margin-bottom: 15px;\n");
+      out.write("                border-bottom: 1px solid #eee;\n");
+      out.write("            }\n");
+      out.write("            .column-labels .product-image,\n");
+      out.write("            .column-labels .product-details,\n");
+      out.write("            .column-labels .product-removal {\n");
+      out.write("                text-indent: -9999px;\n");
+      out.write("            }\n");
+      out.write("\n");
+      out.write("            /* Product entries */\n");
+      out.write("            .product {\n");
+      out.write("                margin-bottom: 20px;\n");
+      out.write("                padding-bottom: 10px;\n");
+      out.write("                border-bottom: 1px solid #eee;\n");
+      out.write("            }\n");
+      out.write("            .product .product-image {\n");
+      out.write("                text-align: center;\n");
+      out.write("            }\n");
+      out.write("            .product .product-image img {\n");
+      out.write("                width: 100px;\n");
+      out.write("            }\n");
+      out.write("            .product .product-details .product-title {\n");
+      out.write("                margin-right: 20px;\n");
+      out.write("                font-family: \"HelveticaNeue-Medium\", \"Helvetica Neue Medium\";\n");
+      out.write("            }\n");
+      out.write("            .product .product-details .product-description {\n");
+      out.write("                margin: 5px 20px 5px 0;\n");
+      out.write("                line-height: 1.4em;\n");
+      out.write("            }\n");
+      out.write("            .product .product-quantity input {\n");
+      out.write("                width: 40px;\n");
+      out.write("            }\n");
+      out.write("            .product .remove-product {\n");
+      out.write("                border: 0;\n");
+      out.write("                padding: 4px 8px;\n");
+      out.write("                background-color: #c66;\n");
+      out.write("                color: #fff;\n");
+      out.write("                font-family: \"HelveticaNeue-Medium\", \"Helvetica Neue Medium\";\n");
+      out.write("                font-size: 12px;\n");
+      out.write("                border-radius: 3px;\n");
+      out.write("            }\n");
+      out.write("            .product .remove-product:hover {\n");
+      out.write("                background-color: #a44;\n");
+      out.write("            }\n");
+      out.write("\n");
+      out.write("            /* Totals section */\n");
+      out.write("            .totals .totals-item {\n");
+      out.write("                float: right;\n");
+      out.write("                clear: both;\n");
+      out.write("                width: 100%;\n");
+      out.write("                margin-bottom: 10px;\n");
+      out.write("            }\n");
+      out.write("            .totals .totals-item label {\n");
+      out.write("                float: left;\n");
+      out.write("                clear: both;\n");
+      out.write("                width: 79%;\n");
+      out.write("                text-align: right;\n");
+      out.write("            }\n");
+      out.write("            .totals .totals-item .totals-value {\n");
+      out.write("                float: right;\n");
+      out.write("                width: 21%;\n");
+      out.write("                text-align: right;\n");
+      out.write("            }\n");
+      out.write("            .totals .totals-item-total {\n");
+      out.write("                font-family: \"HelveticaNeue-Medium\", \"Helvetica Neue Medium\";\n");
+      out.write("            }\n");
+      out.write("\n");
+      out.write("            .checkout {\n");
+      out.write("                float: right;\n");
+      out.write("                border: 0;\n");
+      out.write("                margin-top: 20px;\n");
+      out.write("                padding: 6px 25px;\n");
+      out.write("                background-color: #6b6;\n");
+      out.write("                color: #fff;\n");
+      out.write("                font-size: 25px;\n");
+      out.write("                border-radius: 3px;\n");
+      out.write("            }\n");
+      out.write("\n");
+      out.write("            .checkout:hover {\n");
+      out.write("                background-color: #494;\n");
+      out.write("            }\n");
+      out.write("\n");
+      out.write("            /* Make adjustments for tablet */\n");
+      out.write("            @media screen and (max-width: 650px) {\n");
+      out.write("                .shopping-cart {\n");
+      out.write("                    margin: 0;\n");
+      out.write("                    padding-top: 20px;\n");
+      out.write("                    border-top: 1px solid #eee;\n");
+      out.write("                }\n");
+      out.write("\n");
+      out.write("                .column-labels {\n");
+      out.write("                    display: none;\n");
+      out.write("                }\n");
+      out.write("\n");
+      out.write("                .product-image {\n");
+      out.write("                    float: right;\n");
+      out.write("                    width: auto;\n");
+      out.write("                }\n");
+      out.write("                .product-image img {\n");
+      out.write("                    margin: 0 0 10px 10px;\n");
+      out.write("                }\n");
+      out.write("\n");
+      out.write("                .product-details {\n");
+      out.write("                    float: none;\n");
+      out.write("                    margin-bottom: 10px;\n");
+      out.write("                    width: auto;\n");
+      out.write("                }\n");
+      out.write("\n");
+      out.write("                .product-price {\n");
+      out.write("                    clear: both;\n");
+      out.write("                    width: 70px;\n");
+      out.write("                }\n");
+      out.write("\n");
+      out.write("                .product-quantity {\n");
+      out.write("                    width: 100px;\n");
+      out.write("                }\n");
+      out.write("                .product-quantity input {\n");
+      out.write("                    margin-left: 20px;\n");
+      out.write("                }\n");
+      out.write("\n");
+      out.write("                .product-quantity:before {\n");
+      out.write("                    content: \"x\";\n");
+      out.write("                }\n");
+      out.write("\n");
+      out.write("                .product-removal {\n");
+      out.write("                    width: auto;\n");
+      out.write("                }\n");
+      out.write("\n");
+      out.write("                .product-line-price {\n");
+      out.write("                    float: right;\n");
+      out.write("                    width: 70px;\n");
+      out.write("                }\n");
+      out.write("            }\n");
+      out.write("            /* Make more adjustments for phone */\n");
+      out.write("            @media screen and (max-width: 350px) {\n");
+      out.write("                .product-removal {\n");
+      out.write("                    float: right;\n");
+      out.write("                }\n");
+      out.write("\n");
+      out.write("                .product-line-price {\n");
+      out.write("                    float: right;\n");
+      out.write("                    clear: left;\n");
+      out.write("                    width: auto;\n");
+      out.write("                    margin-top: 10px;\n");
+      out.write("                }\n");
+      out.write("\n");
+      out.write("                .product .product-line-price:before {\n");
+      out.write("                    content: \"Item Total: ₹\";\n");
+      out.write("                }\n");
+      out.write("\n");
+      out.write("                .totals .totals-item label {\n");
+      out.write("                    width: 60%;\n");
+      out.write("                }\n");
+      out.write("                .totals .totals-item .totals-value {\n");
+      out.write("                    width: 40%;\n");
+      out.write("                }\n");
+      out.write("            }\n");
+      out.write("\n");
+      out.write("\n");
+      out.write("            label{\n");
+      out.write("                margin: 0px 15px;\n");
+      out.write("            }\n");
+      out.write("\n");
+      out.write("\n");
+      out.write("\n");
+      out.write("            /*SWITCH 2 ------------------------------------------------*/\n");
+      out.write("            .switch2{\n");
+      out.write("                position: relative;\n");
+      out.write("                display: inline-block;\n");
+      out.write("                width: 60px;\n");
+      out.write("                height: 32px;\n");
+      out.write("                border-radius: 27px;\n");
+      out.write("                background-color: #bdc3c7;\n");
+      out.write("                cursor: pointer;\n");
+      out.write("                transition: all .3s;\n");
+      out.write("            }\n");
+      out.write("            .switch2 input{\n");
+      out.write("                display: none;\n");
+      out.write("            }\n");
+      out.write("            .switch2 input:checked + div{\n");
+      out.write("                left: calc(100% - 40px);\n");
+      out.write("            }\n");
+      out.write("            .switch2 div{\n");
+      out.write("                position: absolute;\n");
+      out.write("                width: 40px;\n");
+      out.write("                height: 40px;\n");
+      out.write("                border-radius: 25px;\n");
+      out.write("                background-color: white;\n");
+      out.write("                top: -4px;\n");
+      out.write("                left: 0px;\n");
+      out.write("                box-shadow: 0px 0px 0.5px 0.5px rgb(170,170,170);\n");
+      out.write("                transition: all .2s;\n");
+      out.write("            }\n");
+      out.write("\n");
+      out.write("            .switch2-checked{\n");
+      out.write("                background-color: #2ecc71;\n");
+      out.write("            }\n");
+      out.write("\n");
+      out.write("\n");
+      out.write("        </style>\n");
+      out.write("    </head>\n");
+      out.write("    ");
+
+        if (request.getParameter("btn_checkout") != null) {
+
+            String amt = request.getParameter("carttotalamt");
+
+            String selC = "select * from tbl_booking where user_id='" + session.getAttribute("uid") + "'and booking_status='0'";
+            ResultSet rsC = con.selectCommand(selC);
+            rsC.next();
+
+            String upQry = "update tbl_booking set booking_date=curdate(),booking_amount='" + amt + "',booking_status='1' where user_id='" + session.getAttribute("uid") + "' and booking_status='0'";
+            if (con.executeCommand(upQry)) {
+                String updQry = "update tbl_cart set cart_status = '1' where booking_id='" + rsC.getString("booking_id") + "'";
+                con.executeCommand(updQry);
+
+            }
+
+            session.setAttribute("bid", rsC.getString("booking_id"));
+
+            response.sendRedirect("Payment.jsp");
+
+        }
+
+
+    
+      out.write("\n");
+      out.write("    <body onload=\"recalculateCart()\">\n");
+      out.write("        <h1>Cart</h1>\n");
+      out.write("        <form method=\"post\">\n");
+      out.write("            <div class=\"shopping-cart\" style=\"margin-top: 50px\">\n");
+      out.write("                <div class=\"column-labels\">\n");
+      out.write("                    <!--<label class=\"product-image\" >Image</label>-->\n");
+      out.write("                    <label class=\"product-details\">Product</label>\n");
+      out.write("                    <label class=\"product-price\">Price</label>\n");
+      out.write("                    <label class=\"product-quantity\">Quantity</label>\n");
+      out.write("                    <label class=\"product-removal\">Remove</label>\n");
+      out.write("                    <label class=\"product-line-price\">Total</label>\n");
+      out.write("                </div>\n");
+      out.write("                ");
+                String sel = "select * from tbl_booking b inner join tbl_cart c on c.booking_id=b.booking_id where b.user_id='" + session.getAttribute("uid") + "' and booking_status='0'";
+                    ResultSet rs = con.selectCommand(sel);
+                    while (rs.next()) {
+                        String selProduct = "select * from tbl_product where product_id='" + rs.getString("product_id") + "'";
+                        ResultSet rsProduct = con.selectCommand(selProduct);
+                        if (rsProduct.next()) {
+                            String selProductStock = "select sum(stock_qty) as stock from tbl_stock where product_id='" + rsProduct.getString("product_id") + "'";
+                            ResultSet rsProductStock = con.selectCommand(selProductStock);
+                            if (rsProductStock.next()) {
+                
+      out.write("\n");
+      out.write("\n");
+      out.write("                <div class=\"product\">\n");
+      out.write("                    <div class=\"product-image\">\n");
+      out.write("                        <img\n");
+      out.write("                            src=\"../Assets/Files/");
+      out.print(rsProduct.getString("product_photo"));
+      out.write("\"\n");
+      out.write("                            />\n");
+      out.write("                    </div>\n");
+      out.write("                    <div class=\"product-details\">\n");
+      out.write("                        <div class=\"product-title\">");
+      out.print(rsProduct.getString("product_name"));
+      out.write("</div>\n");
+      out.write("                        <p class=\"product-description\">\n");
+      out.write("                            ");
+      out.print(rsProduct.getString("product_details"));
+      out.write("\n");
+      out.write("                        </p>\n");
+      out.write("                    </div>\n");
+      out.write("                    <div class=\"product-price\">");
+      out.print(rsProduct.getString("product_rate"));
+      out.write("</div>\n");
+      out.write("                    <div class=\"product-quantity\">\n");
+      out.write("                        <input alt=\"");
+      out.print(rs.getString("cart_id"));
+      out.write("\" type=\"number\" value=\"");
+      out.print(rs.getString("cart_qty"));
+      out.write("\" min=\"1\" max=\"");
+      out.print(rsProductStock.getString("stock"));
+      out.write("\"/>\n");
+      out.write("                    </div>\n");
+      out.write("                    <div class=\"product-removal\">\n");
+      out.write("                        <button class=\"remove-product\" value=\"");
+      out.print(rs.getString("cart_id"));
+      out.write("\">Remove</button>\n");
+      out.write("                    </div>\n");
+      out.write("                    <div class=\"product-line-price\">\n");
+      out.write("                        ");
+
+                            float pr = Float.parseFloat(rsProduct.getString("product_rate"));
+                            float qty = Float.parseFloat(rs.getString("cart_qty"));
+                            float tot = pr * qty;
+                            out.println(String.format("%.2f", tot));
+                        
+      out.write("\n");
+      out.write("                    </div>\n");
+      out.write("                </div>\n");
+      out.write("                ");
+
+                            }
+                        }
+                    }
+                
+      out.write("\n");
+      out.write("\n");
+      out.write("                <div class=\"totals\">\n");
+      out.write("                    <div class=\"totals-item totals-item-total\">\n");
+      out.write("                        <label>Grand Total</label>\n");
+      out.write("                        <div class=\"totals-value\" id=\"cart-total\">0</div>\n");
+      out.write("                        <input type=\"hidden\" id=\"cart-totalamt\" name=\"carttotalamt\" value=\"\"/>\n");
+      out.write("                    </div>\n");
+      out.write("                </div>\n");
+      out.write("\n");
+      out.write("\n");
+      out.write("                <button type=\"submit\" class=\"checkout\" name=\"btn_checkout\">Checkout</button>\n");
+      out.write("\n");
+      out.write("\n");
+      out.write("            </div>\n");
+      out.write("        </form>\n");
+      out.write("        <!-- partial -->\n");
+      out.write("        <script src=\"https://cdnjs.cloudflare.com/ajax/libs/jquery/2.1.3/jquery.min.js\"></script>\n");
+      out.write("        <script>\n");
+      out.write("        /* Set rates + misc */\n");
+      out.write("        var fadeTime = 300;\n");
+      out.write("\n");
+      out.write("        /* Assign actions */\n");
+      out.write("        $(\".product-quantity input\").change(function() {\n");
+      out.write("            $.ajax({\n");
+      out.write("                url: \"../Assets/AjaxPages/AjaxCart.jsp?action=Update&id=\" + this.alt + \"&qty=\" + this.value\n");
+      out.write("            });\n");
+      out.write("            updateQuantity(this);\n");
+      out.write("\n");
+      out.write("        });\n");
+      out.write("\n");
+      out.write("        $(\".product-removal button\").click(function() {\n");
+      out.write("\n");
+      out.write("            $.ajax({\n");
+      out.write("                url: \"../Assets/AjaxPages/AjaxCart.jsp?action=Delete&id=\" + this.value\n");
+      out.write("            });\n");
+      out.write("            removeItem(this);\n");
+      out.write("        });\n");
+      out.write("\n");
+      out.write("        /* Recalculate cart */\n");
+      out.write("        function recalculateCart() {\n");
+      out.write("            var subtotal = 0;\n");
+      out.write("\n");
+      out.write("            /* Sum up row totals */\n");
+      out.write("            $(\".product\").each(function() {\n");
+      out.write("                subtotal += parseFloat(\n");
+      out.write("                        $(this).children(\".product-line-price\").text()\n");
+      out.write("                        );\n");
+      out.write("            });\n");
+      out.write("\n");
+      out.write("            /* Calculate totals */\n");
+      out.write("            var total = subtotal;\n");
+      out.write("\n");
+      out.write("            /* Update totals display */\n");
+      out.write("            $(\".totals-value\").fadeOut(fadeTime, function() {\n");
+      out.write("                $(\"#cart-total\").html(total.toFixed(2));\n");
+      out.write("                document.getElementById(\"cart-totalamt\").value = total.toFixed(2);\n");
+      out.write("                if (total == 0) {\n");
+      out.write("                    $(\".checkout\").fadeOut(fadeTime);\n");
+      out.write("                } else {\n");
+      out.write("                    $(\".checkout\").fadeIn(fadeTime);\n");
+      out.write("                }\n");
+      out.write("                $(\".totals-value\").fadeIn(fadeTime);\n");
+      out.write("            });\n");
+      out.write("        }\n");
+      out.write("\n");
+      out.write("        /* Update quantity */\n");
+      out.write("        function updateQuantity(quantityInput) {\n");
+      out.write("            /* Calculate line price */\n");
+      out.write("            var productRow = $(quantityInput).parent().parent();\n");
+      out.write("            var price = parseFloat(productRow.children(\".product-price\").text());\n");
+      out.write("            var quantity = $(quantityInput).val();\n");
+      out.write("            var linePrice = price * quantity;\n");
+      out.write("            /* Update line price display and recalc cart totals */\n");
+      out.write("            productRow.children(\".product-line-price\").each(function() {\n");
+      out.write("                $(this).fadeOut(fadeTime, function() {\n");
+      out.write("                    $(this).text(linePrice.toFixed(2));\n");
+      out.write("                    recalculateCart();\n");
+      out.write("                    $(this).fadeIn(fadeTime);\n");
+      out.write("                });\n");
+      out.write("            });\n");
+      out.write("        }\n");
+      out.write("\n");
+      out.write("        /* Remove item from cart */\n");
+      out.write("        function removeItem(removeButton) {\n");
+      out.write("            /* Remove row from DOM and recalc cart total */\n");
+      out.write("            var productRow = $(removeButton).parent().parent();\n");
+      out.write("            productRow.slideUp(fadeTime, function() {\n");
+      out.write("                productRow.remove();\n");
+      out.write("                recalculateCart();\n");
+      out.write("            });\n");
+      out.write("\n");
+      out.write("        }\n");
+      out.write("\n");
+      out.write("        $('.switch2 input').on('change', function() {\n");
+      out.write("            var dad = $(this).parent();\n");
+      out.write("            if ($(this).is(':checked'))\n");
+      out.write("                dad.addClass('switch2-checked');\n");
+      out.write("            else\n");
+      out.write("                dad.removeClass('switch2-checked');\n");
+      out.write("        });\n");
+      out.write("        </script>\n");
+      out.write("    </body>\n");
+      out.write("</html>\n");
+    } catch (Throwable t) {
+      if (!(t instanceof SkipPageException)){
+        out = _jspx_out;
+        if (out != null && out.getBufferSize() != 0)
+          out.clearBuffer();
+        if (_jspx_page_context != null) _jspx_page_context.handlePageException(t);
+        else throw new ServletException(t);
+      }
+    } finally {
+      _jspxFactory.releasePageContext(_jspx_page_context);
+    }
+  }
+}
