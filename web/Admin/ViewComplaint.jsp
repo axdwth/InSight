@@ -1,7 +1,7 @@
 <%-- 
-    Document   : ViewComplaint
-    Created on : 17 Feb, 2024, 2:12:27 PM
-    Author     : 91907
+    Document   : ViewUserComplaint
+    Created on : May 13, 2021, 3:07:52 PM
+    Author     : Pro-TECH
 --%>
 <%@page import="java.sql.ResultSet"%>
 <jsp:useBean class="DB.ConnectionClass" id="con"></jsp:useBean>
@@ -10,37 +10,144 @@
 <html>
     <head>
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-        <title>ViewComplaint</title>
+        <title>Complaint</title>
+        
+        <%@include file="Header.jsp" %>
     </head>
+
+    <%        if (request.getParameter("btn_save") != null) {
+
+            String upQry = "update tbl_complaint set complaint_reply='" + request.getParameter("txt_reply") + "', complaint_reply_date=curdate(),complaint_status='1' where complaint_id='" + request.getParameter("hid") + "'";
+            System.out.println(upQry);
+            con.executeCommand(upQry);
+            response.sendRedirect("ViewComplaint.jsp");
+        }
+
+
+    %>
     <body>
-        <div align="center">
-        <h1>Complaints</h1>
-        <table border="1">
-            <tr>
-                <td>SI No</td>
-                 <td>Complaint Title</td>
-                <td>Complaint Title</td>
-                <td>Complaint content</td>
-                <td colspan="3" align="center">Action</td>
-            </tr>
-            <%
-                int i = 0;
-                String selqry = "select * from tbl_complaint";
-                ResultSet re = con.selectCommand(selqry);
-                while (re.next()) {
-                    i++;
-            %>
-            <tr>
-                <td><%=i%></td>
-                <td><%=re.getString("complaint_date")%></td>
-                <td><%=re.getString("complaint_title")%></td>
-                <td><%=re.getString("complaint_content")%></td>
-                <td><a href="Reply.jsp?cid=<%=re.getString("complaint_id")%>">Reply</a></td>
-            </tr>
-            <%
-                }
-            %> 
-        </table>
-        </div>
+        <section class="main_content dashboard_part">
+
+            <!--/ menu  -->
+            <div class="main_content_iner ">
+                <div class="container-fluid p-0">
+                    <div class="row justify-content-center">
+                        <div class="col-12">
+                            <div class="QA_section">
+                                <!--Form-->
+                                <%                                    if (request.getParameter("up") != null) {
+                                %>
+
+                                <div class="white_box_tittle list_header">
+                                    <div class="col-lg-12">
+                                        <div class="white_box mb_30">
+                                            <div class="box_header ">
+                                                <div class="main-title">
+                                                    <h3 class="mb-0" >Send Reply</h3>
+                                                </div>
+                                            </div>
+                                            <form>
+                                                <div class="form-group">
+                                                    <label for="txt_district">Reply</label>
+                                                    <input required="" type="text" class="form-control" id="txt_reply" name="txt_reply">
+                                                    <input type="hidden" name="hid" value="<%=request.getParameter("up")%>">
+                                                </div>
+                                                <div class="form-group" align="center">
+                                                    <input type="submit" class="btn-dark" style="width:100px; border-radius: 10px 5px " name="btn_save" value="Save">
+                                                </div>
+                                            </form>
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <%
+                                    }
+
+
+                                %>
+                                <h1>New Complaints</h1>
+                                <div class="QA_table mb_30">
+                                    <!-- table-responsive -->
+                                    <table class="table lms_table_active">
+                                        <thead>
+                                            <tr style="background-color: #74CBF9">
+                                                <td align="center" scope="col">Sl.No</td>
+                                                <td align="center" scope="col">Complaint</td>
+                                                <td align="center" scope="col">Date</td>
+                                                <td align="center" scope="col">User</td>
+                                                <td align="center" scope="col">Action</td>
+                                            </tr>
+                                        </thead>
+                                        <tbody>
+                                            <%                                                int i = 0;
+                                                String selQry = "select * from tbl_complaint c inner join tbl_user co on co.user_id=c.user_id where complaint_status='0'";
+                                                ResultSet rs = con.selectCommand(selQry);
+                                                while (rs.next()) {
+
+                                                    i++;
+
+                                            %>
+                                            <tr>
+                                                <td align="center"><%=i%></td>
+                                                <td align="center"><%=rs.getString("complaint_details")%></td>
+                                                <td align="center"><%=rs.getString("complaint_date")%></td>
+                                                <td align="center"><%=rs.getString("user_name")%></td>
+                                                <td align="center"><a href="ViewComplaint.jsp?up=<%=rs.getString("complaint_id")%>" class="status_btn">Reply</a> </td>
+                                            </tr>
+                                            <%                      }
+
+
+                                            %>
+
+                                        </tbody>
+                                    </table>
+                                </div>
+                                <h1>Replied Complaints</h1>
+                                <div class="QA_table mb_30">
+                                    <!-- table-responsive -->
+                                    <table class="table lms_table_active">
+                                        <thead>
+                                            <tr style="background-color: #74CBF9">
+                                                <td align="center" scope="col">Sl.No</td>
+                                                <td align="center" scope="col">Complaint</td>
+                                                <td align="center" scope="col">Date</td>
+                                                <td align="center" scope="col">User</td>
+                                                <td align="center" scope="col">Reply</td>
+                                                <td align="center" scope="col">Reply Date</td>
+                                            </tr>
+                                        </thead>
+                                        <tbody>
+                                            <%                                                int j = 0;
+                                                String selQry1 = "select * from tbl_complaint c inner join tbl_user co on co.user_id=c.user_id where complaint_status='1'";
+                                                ResultSet rs1 = con.selectCommand(selQry1);
+                                                while (rs1.next()) {
+
+                                                    j++;
+
+                                            %>
+                                            <tr>
+                                                <td align="center"><%=j%></td>
+                                                <td align="center"><%=rs1.getString("complaint_details")%></td>
+                                                <td align="center"><%=rs1.getString("complaint_date")%></td>
+                                                <td align="center"><%=rs1.getString("user_name")%></td>
+                                                <td align="center"><%=rs1.getString("complaint_reply")%></td>
+                                                <td align="center"><%=rs1.getString("complaint_reply_date")%></td>
+                                            </tr>
+                                            <%                      }
+
+
+                                            %>
+
+                                        </tbody>
+                                    </table>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+        </section>
     </body>
+    <%@include file="Footer.jsp" %>
 </html>

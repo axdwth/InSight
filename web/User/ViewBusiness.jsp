@@ -4,6 +4,8 @@
 <!DOCTYPE html>
 <html>
     <head>
+        <%@include file="../WEB-INF/Header.jsp" %>
+        
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
         <title>View Business</title>
         <style>
@@ -94,7 +96,7 @@
     </head>
     <body onload="search()">
         <div align="center">
-            <h1>BUSINESS</h1>
+            <h3> FILTER BUSINESS</h3>
             <br> 
             <table border="1">
                 <tr>

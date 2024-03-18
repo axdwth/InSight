@@ -18,10 +18,12 @@
             String updatename = request.getParameter("txt_name");
             String updateEmail = request.getParameter("txt_email");
             String updateaddress = request.getParameter("txt_adress");
+            if (updatename != null && !updatename.isEmpty() && updateEmail != null && !updateEmail.isEmpty()) {
             String update = "UPDATE tbl_buisness SET buisness_name='" + updatename + "',buisness_email='" + updateEmail + "',buisness_address='" + updateaddress + "' where buisness_id='" + id + "'";
             con.executeCommand(update);
             out.println("Changed");
-        }
+            }
+            }
         String sel = "select * from tbl_buisness where buisness_id='" + id + "'";
         ResultSet rs = con.selectCommand(sel);
         if (rs.next()) {
@@ -42,10 +44,7 @@
                         <td>E-mail</td>
                         <td> <input type="text" name='txt_email' placeholder="<%=rs.getString("buisness_email")%>"></td>                         
                     </tr> 
-                     <tr>
-                        <td>Logo</td>
-                        <td> <input type="text" name='txt_email' placeholder="<%=rs.getString("buisness_logo")%>"></td>                         
-                    </tr> 
+                     
                     <tr>
                           <td>Address</td>
                             <td><textarea rows="4" cols="20" name="txt_address"placeholder="<%=rs.getString("buisness_address")%>"></textarea>

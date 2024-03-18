@@ -10,6 +10,7 @@
     <!DOCTYPE html>
     <html>
         <head>
+        <a href="../User/Myprofile.jsp"><h3>↩️Back</h3></a>
             <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
         <title>EditProfile</title>
         </head>
@@ -20,10 +21,12 @@
             String updateEmail = request.getParameter("txt_email");
             String updatecontact = request.getParameter("txt_contact");
             String updateaddress = request.getParameter("txt_address");
+            if (updatename != null && !updatename.isEmpty() && updateEmail != null && !updateEmail.isEmpty()) {
             String update = "UPDATE tbl_user SET user_name='" + updatename + "',user_email='" + updateEmail + "',user_contact='" + updateEmail + "',user_address='" + updateaddress + "' where user_id='" + id + "'";
             con.executeCommand(update);
               out.println("updated");
-        }
+            }
+            }
         String sel = "select * from tbl_user where user_id='" + id + "'";
         ResultSet rs = con.selectCommand(sel);
         if (rs.next()) {
@@ -32,13 +35,14 @@
     %>
 
     <body>
+        <div align="right"><a href="../User/HomePage.jsp"</div>
         <div align="center">
             <h1>Edit Profile</h1>
             <form method="post">
                 <table border='1'>
                     <tr>
                         <td>Name</td>
-                        <td> <input type="text" name='txt_name' placeholder="<%=rs.getString("user_name")%>"></td>
+                        <td> <input type="text" name='txt_name' placeholder="<%=rs.getString("user_name")%>"required="text"></td>
                     </tr>           
                     <tr>
                         <td>E-mail</td>

@@ -38,7 +38,7 @@
                     <tr>
                         <td>Logo</td>
                         <td>
-                          <br> <img src="../Assets/Files/<%=rs.getString("buisness_logo")%>"width="250"height="250"><br>
+                          <br> <img src="../Assets/Files/<%=rs.getString("buisness_logo")%>"width="85"height="85"><br>
                         </td>
                     </tr> 
                     <tr>

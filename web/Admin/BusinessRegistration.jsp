@@ -10,6 +10,11 @@
     <!DOCTYPE html>
     <html>
         <head>
+             <script type = "text/javascript" >
+   function preventBack(){window.history.forward();}
+    setTimeout("preventBack()", 0);
+    window.onunload=function(){null};
+</script>
             <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
             <title>Buisness Register</title>
         </head>
@@ -30,25 +35,25 @@
                             </tr>
                             <tr>
                                 <td>E-mail</td>
-                                <td><input type='text'name='bemail'></td>
+                                <td><input type='text'name='bemail'required="txt_email"></td>
                             </tr>
                             <tr>
                                 <td>contact</td>
-                                <td><input type='text'name='bcontact'></td>
+                                <td><input type='text'name='bcontact' required name="txt_contact" pattern="[7-9]{1}[0-9]{9}"title="Phone number with 7-9 and remaing 9 digit with 0-9"></td>
                             </tr>
                             <tr>
                                 <td>Logo</td>
-                                <td><input type="file" name="file_logo"></td>
+                                <td><input type="file" name="file_logo" required="photo"></td>
 
                             </tr>
                             <tr>
                             <td>Address</td>
-                            <td><textarea rows="4" cols="20" name="user_address" placeholder="Address" ></textarea>
+                            <td><textarea rows="4" cols="20" name="user_address" placeholder="Address" required="text"></textarea>
                             </td> 
                         </tr>
                             <tr>
                                 <td>License</td>
-                                <td><input type="file" name="file_license"></td>
+                                <td><input type="file" name="file_license" required="photo"></td>
                             </tr>
                             <tr>
                                 <td>Type</td>
@@ -104,7 +109,7 @@
                         </tr>
                         <tr>
                             <td>Password</td>
-                            <td><input type='text'name='bpasswrd'> </td>
+                            <td><input type="text" pattern="(?=.*\d)(?=.*[a-z])(?=.*[A-Z]).{8,}" title="Must contain at least one number and one uppercase and lowercase letter, and at least 8 or more characters" name="userpass"  required name="txt_pass" ></td>
                         </tr>
                         <td colspan="2" align="center">
                             <input type="submit" name="btn_save" value="Submit">

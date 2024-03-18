@@ -9,10 +9,21 @@
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <!DOCTYPE html>
 <html>
+
     <head>
+        <script type = "text/javascript" >
+            function preventBack() {
+                window.history.forward();
+            }
+            setTimeout("preventBack()", 0);
+            window.onunload = function() {
+                null
+            };
+        </script>
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
         <title>Login</title>
     </head>
+    <%@include file="Head.jsp" %>
     <%
         if (request.getParameter("btn_login") != null) {
             String email = request.getParameter("txt_email");
@@ -55,25 +66,49 @@
     %>
 
     <body>
-        <form method="post">
-            <div align="center">
-                <h1>Login</h1>
-                <table border='1'>
-                    <tr>
-                        <td>E-mail</td>
-                        <td> <input type="email" name='txt_email'required type="email"></td>
-                    </tr>
-                    <tr>
-                        <td>Password</td>
-                        <td> <input type="password" name='txt_password' required name="txt_pass"></td>
-                    </tr>
-                    <tr>
-                        <td colspan="2" align="center">
-                            <input type="submit" name="btn_login" value="login">
-                        </td>            
-                    </tr>
-                </table>
+        <div class="page-section mb-60">
+            <div class="container">
+                <div class="row">
+                    <div class="col-sm-12 col-md-12 col-xs-12 col-lg-6 mb-30">
+                        <!-- Login Form s-->
+                        <form action="#" method="post">
+                            <div class="login-form">
+                                <h4 class="login-title">Login</h4>
+                                <div class="row">
+                                    <div class="col-md-12 col-12 mb-20">
+                                        <label>Email Address*</label>
+                                        <input class="mb-0" type="email" name="txt_email" placeholder="Email Address">
+                                    </div>
+                                    <div class="col-12 mb-20">
+                                        <label>Password</label>
+                                        <input class="mb-0" type="password" name="txt_password" placeholder="Password">
+                                    </div>
+                                    <div class="col-md-8">
+                                        
+                                    </div>
+                                    <div class="col-md-4 mt-10 mb-20 text-left text-md-right">
+                                        <a href="Forgotpassword.jsp"> Forgotten password?</a>
+                                    </div>
+                                    <div class="col-md-12">
+                                        <button class="register-button mt-0" name="btn_login" type="submit">Login</button>
+                                    </div>
+                                </div>
+                            </div>
+                        </form>
+                    </div>
+                    <div class="col-sm-12 col-md-12 col-lg-6 col-xs-12">
+                        <img src="../Assets/Template/main/images/ecommerce.png"height="420"width="510">
+                    </div>
+                </div>
             </div>
-        </form>
+        </div>
+
+
     </body>
+    <script>
+        const inputField = document.getElementById('txt_password');
+                inputField.addEventListener('paste', e = > e.preventDefault());
+    </script>
+    <%@include file="Foot.jsp" %>
 </html>
+

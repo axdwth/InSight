@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Mar 05, 2024 at 02:14 PM
+-- Generation Time: Mar 18, 2024 at 01:58 PM
 -- Server version: 10.4.24-MariaDB
 -- PHP Version: 8.1.5
 
@@ -31,16 +31,19 @@ CREATE TABLE `tbl_admin` (
   `admin_id` int(11) NOT NULL,
   `admin_name` varchar(50) NOT NULL,
   `admin_email` varchar(70) NOT NULL,
-  `admin_password` varchar(70) NOT NULL
+  `admin_password` varchar(70) NOT NULL,
+  `securityquest_one` varchar(200) NOT NULL,
+  `answer_one` varchar(200) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 --
 -- Dumping data for table `tbl_admin`
 --
 
-INSERT INTO `tbl_admin` (`admin_id`, `admin_name`, `admin_email`, `admin_password`) VALUES
-(1, 'Adwaith', 'adwaith@gmail.com', 'qwerty'),
-(2, 'Tomaaaa', 'tom@gmailaaaa', '55');
+INSERT INTO `tbl_admin` (`admin_id`, `admin_name`, `admin_email`, `admin_password`, `securityquest_one`, `answer_one`) VALUES
+(1, 'Adwaith', 'adwaith@gmail.com', 'qwerty4321', 'what is my luck number ', '1'),
+(2, 'Tomaaaa', 'tom@gmailaaaa', '55', 'what is my favorite movie', 'it'),
+(5, 'Jayath nd', 'jayanth00@gmail.com', '12345Qwerty', 'null', 'null');
 
 -- --------------------------------------------------------
 
@@ -62,7 +65,10 @@ CREATE TABLE `tbl_booking` (
 
 INSERT INTO `tbl_booking` (`booking_id`, `booking_date`, `booking_amount`, `booking_status`, `user_id`) VALUES
 (1, '2024-03-02', 214372, 2, 4),
-(4, '0', 0, 0, 4);
+(4, '2024-03-09', 68893, 2, 4),
+(5, '2024-03-09', 2198, 2, 4),
+(6, '2024-03-11', 68893, 2, 13),
+(7, '2024-03-18', 13996, 1, 14);
 
 -- --------------------------------------------------------
 
@@ -78,7 +84,7 @@ CREATE TABLE `tbl_buisness` (
   `buisness_license` varchar(70) NOT NULL,
   `buisness_logo` varchar(200) NOT NULL,
   `buisness_password` varchar(70) NOT NULL,
-  `buisness_address` varchar(70) NOT NULL,
+  `buisness_address` varchar(200) NOT NULL,
   `place_id` int(10) NOT NULL,
   `type_id` int(10) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
@@ -89,7 +95,8 @@ CREATE TABLE `tbl_buisness` (
 
 INSERT INTO `tbl_buisness` (`buisness_id`, `buisness_name`, `buisness_contact`, `buisness_email`, `buisness_license`, `buisness_logo`, `buisness_password`, `buisness_address`, `place_id`, `type_id`) VALUES
 (3, 'A1log', '987654322', 'a1log@gmail', 'Businesslicense_1542.png', 'businessLogo_1217.jpg', '1234', 'Pbvr', 6, 4),
-(4, 'ElectronicStore', '89874642', 'electra123@gmail.com', 'Businesslicense_1149.jpg', 'businessLogo_1772.png', '1234', 'muvattupuzha,ekm', 3, 6);
+(4, 'Electra', '89874642', 'electra123@gmail.com', 'Businesslicense_1149.jpg', 'businessLogo_1772.png', '1234', 'muvattupuzha,ekm', 3, 6),
+(5, 'New Dates', '9074548615', 'NewDates@gmail.com', 'Businesslicense_1862.png', 'businessLogo_1500.png', '1234', 'New Dates kakkanad', 6, 15);
 
 -- --------------------------------------------------------
 
@@ -114,8 +121,14 @@ INSERT INTO `tbl_cart` (`cart_id`, `cart_qty`, `product_id`, `booking_id`, `cart
 (2, 3, 23, 1, 4),
 (3, 7, 24, 1, 4),
 (5, 1, 21, 3, 0),
-(6, 1, 21, 4, 0),
-(7, 1, 23, 4, 0);
+(6, 1, 21, 4, 1),
+(7, 1, 23, 4, 1),
+(8, 2, 24, 5, 1),
+(9, 1, 21, 6, 4),
+(10, 1, 23, 6, 1),
+(11, 1, 24, 7, 1),
+(13, 1, 14, 7, 1),
+(14, 1, 26, 7, 1);
 
 -- --------------------------------------------------------
 
@@ -176,9 +189,9 @@ INSERT INTO `tbl_chat` (`chat_id`, `chat_date`, `chat_message`, `buisness_idto`,
 CREATE TABLE `tbl_complaint` (
   `complaint_id` int(10) NOT NULL,
   `complaint_date` date NOT NULL,
-  `complaint_title` varchar(50) NOT NULL,
-  `complaint_reply` varchar(50) NOT NULL DEFAULT 'not yet replied',
-  `complaint_content` varchar(50) NOT NULL,
+  `complaint_title` varchar(200) NOT NULL,
+  `complaint_reply` varchar(200) NOT NULL DEFAULT 'not yet replied',
+  `complaint_content` varchar(200) NOT NULL,
   `complaint_status` int(10) NOT NULL DEFAULT 0,
   `user_id` int(10) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
@@ -287,7 +300,8 @@ CREATE TABLE `tbl_review` (
 --
 
 INSERT INTO `tbl_review` (`review_id`, `user_name`, `user_rating`, `user_review`, `review_datetime`, `product_id`) VALUES
-(1, 'Suraj', '5', 'Good Product', '2024-03-02 14:12:19', 21);
+(1, 'Suraj', '5', 'Good Product', '2024-03-02 14:12:19', 21),
+(2, 'Adwaith', '5', 'Just woww', '2024-03-13 21:16:35', 21);
 
 -- --------------------------------------------------------
 
@@ -391,9 +405,9 @@ CREATE TABLE `tbl_type` (
 --
 
 INSERT INTO `tbl_type` (`type_id`, `type_name`) VALUES
-(4, 'Logistics'),
 (6, 'Electronics'),
-(13, 'Mobiles and Smartphones');
+(13, 'Mobiles and Smartphones'),
+(15, 'Dates and nuts');
 
 -- --------------------------------------------------------
 
@@ -406,20 +420,21 @@ CREATE TABLE `tbl_user` (
   `user_name` varchar(50) NOT NULL,
   `user_contact` varchar(100) NOT NULL,
   `user_email` varchar(70) NOT NULL,
-  `user_address` varchar(60) NOT NULL,
+  `user_address` varchar(200) NOT NULL,
   `user_photo` varchar(100) NOT NULL,
   `place_id` int(10) NOT NULL,
-  `user_password` varchar(15) NOT NULL
+  `user_password` varchar(15) NOT NULL,
+  `securityquest_one` varchar(200) NOT NULL,
+  `answer_one` varchar(200) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 --
 -- Dumping data for table `tbl_user`
 --
 
-INSERT INTO `tbl_user` (`user_id`, `user_name`, `user_contact`, `user_email`, `user_address`, `user_photo`, `place_id`, `user_password`) VALUES
-(1, 'Suraj K S', '9876543210', 'surajks@gmail.com', 'thodupuzha', 'UserPhoto_1696.jpeg', 3, 'qwerty123'),
-(4, 'Axdwth', '9074548614', 'axdwth@gmail.com', 'Pbvr', 'UserPhoto_1598.webp', 3, 'qwerty'),
-(5, 'adwx', '990997633', 'axdwth@gmail.com', 'sfgchxbjk nx', 'UserPhoto_1116.png', 3, '12345');
+INSERT INTO `tbl_user` (`user_id`, `user_name`, `user_contact`, `user_email`, `user_address`, `user_photo`, `place_id`, `user_password`, `securityquest_one`, `answer_one`) VALUES
+(13, 'Adwaithajikumar', '9075431726', 'adwaithajikumar4321@gmail.com', 'kjdhgdvhjxh', 'UserPhoto_1569.png', 6, 'Qwerty123', 'what is my pets name', 'tom'),
+(14, 'Aby', '9087656669', 'Aby123@gmail.com', 'fhfdhghggefuygge', 'UserPhoto_1084.avif', 6, 'Qwerty123', 'what is my pet name', 'luca');
 
 --
 -- Indexes for dumped tables
@@ -535,25 +550,25 @@ ALTER TABLE `tbl_user`
 -- AUTO_INCREMENT for table `tbl_admin`
 --
 ALTER TABLE `tbl_admin`
-  MODIFY `admin_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
+  MODIFY `admin_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
 
 --
 -- AUTO_INCREMENT for table `tbl_booking`
 --
 ALTER TABLE `tbl_booking`
-  MODIFY `booking_id` int(10) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
+  MODIFY `booking_id` int(10) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=8;
 
 --
 -- AUTO_INCREMENT for table `tbl_buisness`
 --
 ALTER TABLE `tbl_buisness`
-  MODIFY `buisness_id` int(10) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
+  MODIFY `buisness_id` int(10) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
 
 --
 -- AUTO_INCREMENT for table `tbl_cart`
 --
 ALTER TABLE `tbl_cart`
-  MODIFY `cart_id` int(10) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=8;
+  MODIFY `cart_id` int(10) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=15;
 
 --
 -- AUTO_INCREMENT for table `tbl_category`
@@ -595,7 +610,7 @@ ALTER TABLE `tbl_product`
 -- AUTO_INCREMENT for table `tbl_review`
 --
 ALTER TABLE `tbl_review`
-  MODIFY `review_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
+  MODIFY `review_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
 
 --
 -- AUTO_INCREMENT for table `tbl_state`
@@ -625,13 +640,13 @@ ALTER TABLE `tbl_subtype`
 -- AUTO_INCREMENT for table `tbl_type`
 --
 ALTER TABLE `tbl_type`
-  MODIFY `type_id` int(10) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=14;
+  MODIFY `type_id` int(10) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=16;
 
 --
 -- AUTO_INCREMENT for table `tbl_user`
 --
 ALTER TABLE `tbl_user`
-  MODIFY `user_id` int(10) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
+  MODIFY `user_id` int(10) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=15;
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;

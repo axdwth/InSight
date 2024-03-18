@@ -9,6 +9,7 @@
 <!DOCTYPE html>
 <html>
     <head>
+    <a href="../Business/HomePage.jsp"><h3>↩️Back</h3></a>
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
         <title>View Bookings</title>
     </head>
@@ -24,7 +25,7 @@
 
     %>
     <body>
-        <br><br><br><br><br><br><br>
+        <br>
         <h1 align="center">Bookings</h1>
         <br><br>
         <table align='center' border="1" width="50%" >

@@ -9,6 +9,7 @@
 <!DOCTYPE html>
 <html>
     <head>
+    <br> <a href="../User/HomePage.jsp"><h3>↩️Back</h3></a><br>
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
         <title>Complaint</title>
     </head>
@@ -73,7 +74,7 @@
             </tr>
             <%
                 int i = 0;
-                String selqry = "select * from tbl_complaint";
+                String selqry = "select * from tbl_complaint where user_id='"+userid+"'";
                 ResultSet re = con.selectCommand(selqry);
                 while (re.next()) {
                     i++;

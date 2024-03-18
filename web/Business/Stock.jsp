@@ -9,6 +9,7 @@
     <!DOCTYPE html>
     <html>
         <head>
+        <a href="../Business/Viewproduct.jsp"><h3>↩️Back</h3></a>
             <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
             <title>ADD STOCK</title>
         </head>

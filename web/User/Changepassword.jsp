@@ -10,6 +10,7 @@
 <html>
     <head>
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+    <a href="../User/Myprofile.jsp"><h3>↩️Back</h3></a>
         <title>ChangePassword</title>
     </head>
     <%
@@ -79,7 +80,7 @@
                 </tr>
               <tr>
                    <td colspan="2" align="center">
-                        <input type="submit" name="btn_change" value="Update">
+                        <input type="submit" name="btn_change" value="✅">
                     </td>            
               </tr>
          </form>

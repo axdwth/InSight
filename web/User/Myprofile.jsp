@@ -10,6 +10,7 @@
 <html>
     <head>
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+    <a href="../User/HomePage.jsp"><h3>↩️Back</h3></a>
         <title>My Profile</title>
     </head>
     <%
@@ -17,7 +18,7 @@
 
         String user = " select*from tbl_user where user_id='" + id + "' ";
         ResultSet rs = con.selectCommand(user);
-        rs.next();;
+        rs.next();
 
     %>
     <body>
@@ -53,7 +54,7 @@
                     <tr>
                         <td>Photo</td>
                         <td>
-                          <br> <img src="../Assets/Files/<%=rs.getString("user_photo")%>"width="150"height="150"><br>
+                          <br> <img src="../Assets/Files/<%=rs.getString("user_photo")%>"width="160"height="126s"><br>
                         </td>
                     </tr>
                     <tr>
@@ -65,7 +66,7 @@
                         <br>
                         <table border="1">
                             <tr>
-                                <td><a href="Changepassword.jsp">Change password</a></td>
+                                <td>✏️<a href="Changepassword.jsp">Change password</a></td>
                         </tr>
                         </table>
             </div>                        

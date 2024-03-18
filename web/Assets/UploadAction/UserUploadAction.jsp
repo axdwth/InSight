@@ -106,8 +106,8 @@
             }
 
         }
-        String InsQry = "INSERT INTO `tbl_user`( `user_name`, `user_contact`, `user_email`,`user_address`,place_id, `user_photo`,`user_password`)"
-                + "values('" + value[0] + "','" + value[1] + "','" + value[2] + "','" + value[3] + "','" + value[6] + "','" + photo + "','" + value[7] + "')";
+        String InsQry = "INSERT INTO `tbl_user`( `user_name`, `user_contact`, `user_email`,`user_address`,place_id, `user_photo`,`user_password`,securityquest_one,answer_one)"
+                + "values('" + value[0] + "','" + value[1] + "','" + value[2] + "','" + value[3] + "','" + value[6] + "','" + photo + "','" + value[7] + "','" + value[8] + "','" + value[9] + "')";
 
             //System.out.println(InsQry);
         //out.println(InsQry);
@@ -118,7 +118,7 @@
 <script type="text/javascript">
     alert("Registration Completed");
     setTimeout(function() {
-        window.location.href = '../../Guest/UserRegistration.jsp'
+        window.location.href = '../../Guest/Login.jsp'
     }, 40);//40millisecend it go to next page
 </script>
 <%

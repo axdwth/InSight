@@ -328,7 +328,7 @@
 
 
     %>
-    <body o  nload="recalculateCart()">
+    <body onload="recalculateCart()">
         <h1 align="center">Cart</h1>
         <form method="post">
             <div class="shopping-cart" style="margin-top: 50px">
@@ -395,88 +395,88 @@
         <!-- partial -->
         <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/2.1.3/jquery.min.js"></script>
         <script>
-        /* Set rates + misc */
-        var fadeTime = 300;
+            /* Set rates + misc */
+            var fadeTime = 300;
 
-        /* Assign actions */
-        $(".product-quantity input").change(function() {
-            $.ajax({
-                url: "../Assets/AjaxPages/AjaxCart.jsp?action=Update&id=" + this.alt + "&qty=" + this.value
-            });
-            updateQuantity(this);
-
-        });
-
-        $(".product-removal button").click(function() {
-
-            $.ajax({
-                url: "../Assets/AjaxPages/AjaxCart.jsp?action=Delete&id=" + this.value
-            });
-            removeItem(this);
-        });
-
-        /* Recalculate cart */
-        function recalculateCart() {
-            var subtotal = 0;
-
-            /* Sum up row totals */
-            $(".product").each(function() {
-                subtotal += parseFloat(
-                        $(this).children(".product-line-price").text()
-                        );
-            });
-
-            /* Calculate totals */
-            var total = subtotal;
-
-            /* Update totals display */
-            $(".totals-value").fadeOut(fadeTime, function() {
-                $("#cart-total").html(total.toFixed(2));
-                document.getElementById("cart-totalamt").value = total.toFixed(2);
-                if (total == 0) {
-                    $(".checkout").fadeOut(fadeTime);
-                } else {
-                    $(".checkout").fadeIn(fadeTime);
-                }
-                $(".totals-value").fadeIn(fadeTime);
-            });
-        }
-
-        /* Update quantity */
-        function updateQuantity(quantityInput) {
-            /* Calculate line price */
-            var productRow = $(quantityInput).parent().parent();
-            var price = parseFloat(productRow.children(".product-price").text());
-            var quantity = $(quantityInput).val();
-            var linePrice = price * quantity;
-            /* Update line price display and recalc cart totals */
-            productRow.children(".product-line-price").each(function() {
-                $(this).fadeOut(fadeTime, function() {
-                    $(this).text(linePrice.toFixed(2));
-                    recalculateCart();
-                    $(this).fadeIn(fadeTime);
+            /* Assign actions */
+            $(".product-quantity input").change(function() {
+                $.ajax({
+                    url: "../Assets/AjaxPages/AjaxCart.jsp?action=Update&id=" + this.alt + "&qty=" + this.value
                 });
-            });
-        }
+                updateQuantity(this);
 
-        /* Remove item from cart */
-        function removeItem(removeButton) {
-            /* Remove row from DOM and recalc cart total */
-            var productRow = $(removeButton).parent().parent();
-            productRow.slideUp(fadeTime, function() {
-                productRow.remove();
-                recalculateCart();
             });
 
-        }
+            $(".product-removal button").click(function() {
 
-        $('.switch2 input').on('change', function() {
-            var dad = $(this).parent();
-            if ($(this).is(':checked'))
-                dad.addClass('switch2-checked');
-            else
-                dad.removeClass('switch2-checked');
-        });
+                $.ajax({
+                    url: "../Assets/AjaxPages/AjaxCart.jsp?action=Delete&id=" + this.value
+                });
+                removeItem(this);
+            });
+
+            /* Recalculate cart */
+            function recalculateCart() {
+                var subtotal = 0;
+
+                /* Sum up row totals */
+                $(".product").each(function() {
+                    subtotal += parseFloat(
+                            $(this).children(".product-line-price").text()
+                            );
+                });
+
+                /* Calculate totals */
+                var total = subtotal;
+
+                /* Update totals display */
+                $(".totals-value").fadeOut(fadeTime, function() {
+                    $("#cart-total").html(total.toFixed(2));
+                    document.getElementById("cart-totalamt").value = total.toFixed(2);
+                    if (total == 0) {
+                        $(".checkout").fadeOut(fadeTime);
+                    } else {
+                        $(".checkout").fadeIn(fadeTime);
+                    }
+                    $(".totals-value").fadeIn(fadeTime);
+                });
+            }
+
+            /* Update quantity */
+            function updateQuantity(quantityInput) {
+                /* Calculate line price */
+                var productRow = $(quantityInput).parent().parent();
+                var price = parseFloat(productRow.children(".product-price").text());
+                var quantity = $(quantityInput).val();
+                var linePrice = price * quantity;
+                /* Update line price display and recalc cart totals */
+                productRow.children(".product-line-price").each(function() {
+                    $(this).fadeOut(fadeTime, function() {
+                        $(this).text(linePrice.toFixed(2));
+                        recalculateCart();
+                        $(this).fadeIn(fadeTime);
+                    });
+                });
+            }
+
+            /* Remove item from cart */
+            function removeItem(removeButton) {
+                /* Remove row from DOM and recalc cart total */
+                var productRow = $(removeButton).parent().parent();
+                productRow.slideUp(fadeTime, function() {
+                    productRow.remove();
+                    recalculateCart();
+                });
+
+            }
+
+            $('.switch2 input').on('change', function() {
+                var dad = $(this).parent();
+                if ($(this).is(':checked'))
+                    dad.addClass('switch2-checked');
+                else
+                    dad.removeClass('switch2-checked');
+            });
         </script>
     </body>
 </html>

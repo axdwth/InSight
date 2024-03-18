@@ -10,19 +10,31 @@
 <!DOCTYPE html>
 <html>
     <head>
+         <script type = "text/javascript" >
+   function preventBack(){window.history.forward();}
+    setTimeout("preventBack()", 0);
+    window.onunload=function(){null};
+</script>
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
         <title>BUSINESS PAGE</title>
     </head>
     <body>
+        <fieldset>
         <div align="center">
-            <h1>Hello<%=session.getAttribute("bname")%>!</h1>
+            <h1>Hello  <%=session.getAttribute("bname")%>👋</h1>
         </div>
         <div align="center">
-            <a href="Booking.jsp">ViewBooking</a><br>
-            <br><a href="Myprofile.jsp">My profile</a><br> 
+            <a href="Bookings.jsp">ViewBooking</a><br>
             <br><a href="Product.jsp">Add products</a><br>
             <br><a href="Viewproduct.jsp">View Products</a><br>
-            <br><a href="Chat/Chat.jsp">Chat</a><br>
+            </fieldset><br>
+            <fieldset>
+                <div align='center'>
+           <br><a href="Myprofile.jsp">My profile</a><br>
+                    <br><a href="Chat/Chat.jsp">Chat</a><br>  
+          <br> <a href="../Guest/Login.jsp">Logout◀️</a><br>
+            </div>
+            </fieldset>
         </div>
     </body>
 </html>

@@ -5,6 +5,7 @@
 
 <html>
     <head>
+      
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
         <title>Search</title>
         <!-- Latest compiled and minified CSS -->
@@ -60,7 +61,7 @@
         <div class="container-fluid">
             <div class="row">
                 <div class="col-lg-3">
-                    <h5>Filter Product</h5>
+                    <h1>Filter Product</h1>
                     <hr>
                     <h6 class="text-info"> Select Category</h6>
                     <ul class="list-group">

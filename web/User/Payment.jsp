@@ -368,16 +368,20 @@ input {
     transform: translateX(-50%);
     bottom: 120px;
     border: none;
-    padding: 1rem 3rem;
-    border-radius: 1rem;
-    background-color: #bdbdbd;
+    padding: 1rem 2rem;
+    border-radius: 3rem;
+    background-color: #808080;
     color: white;
+    font-family: 'Source Code Pro', monospace;
     font-size: 1rem;
-    
+    box-shadow: 20 0 10px rgba(255, 255, 155, 0.5);
 }
-.center-button:hover{
-    background-color: #616161;
+
+.center-button:hover {
+    background-color: #0097a7 ;
 }
+
+      
 </style>
 </head>
 <%
@@ -398,7 +402,7 @@ input {
     %>
 <body>
     <div class="payment-title">
-        <h1>Payment Information</h1>
+        <h1><b>PAYMENT IFROMATION</b></h1>
     </div>
     <div class="container preload">
         <div class="creditcard">
@@ -420,8 +424,8 @@ input {
                         </g>
                         <text transform="matrix(1 0 0 1 60.106 295.0121)" id="svgnumber" class="st2 st3 st4">0123 4567
                             8910 1112</text>
-                        <text transform="matrix(1 0 0 1 54.1064 428.1723)" id="svgname" class="st2 st5 st6">JOHN
-                            DOE</text>
+                        <text transform="matrix(1 0 0 1 54.1064 428.1723)" id="svgname" class="st2 st5 st6">YOUR NaMe</text>
+                            
                         <text transform="matrix(1 0 0 1 54.1074 389.8793)" class="st7 st5 st8">cardholder name</text>
                         <text transform="matrix(1 0 0 1 479.7754 388.8793)" class="st7 st5 st8">expiration</text>
                         <text transform="matrix(1 0 0 1 65.1054 241.5)" class="st7 st5 st8">card number</text>
@@ -493,14 +497,14 @@ input {
                             <path class="st5"
                                 d="M701.1,184.6H618h-8h-10v64.5h10h8h83.1c3.3,0,6-2.7,6-6v-52.5C707.1,187.3,704.4,184.6,701.1,184.6z" />
                         </g>
-                        <text transform="matrix(1 0 0 1 621.999 227.2734)" id="svgsecurity" class="st6 st7">985</text>
+                        <text transform="matrix(1 0 0 1 621.999 227.2734)" id="svgsecurity" class="st6 st7">000</text>
                         <g class="st8">
                             <text transform="matrix(1 0 0 1 518.083 280.0879)" class="st9 st6 st10">security code</text>
                         </g>
                         <rect x="58.1" y="378.6" class="st11" width="375.5" height="13.5" />
                         <rect x="58.1" y="405.6" class="st11" width="421.7" height="13.5" />
-                        <text transform="matrix(1 0 0 1 59.5073 228.6099)" id="svgnameback" class="st12 st13">John
-                            Doe</text>
+                        <text transform="matrix(1 0 0 1 59.5073 228.6099)" id="svgnameback" class="st12 st13">NAmE
+                         </text>
                     </g>
                 </svg>
             </div>

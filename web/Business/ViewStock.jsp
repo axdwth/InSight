@@ -9,6 +9,7 @@
 <!DOCTYPE html>
 <html>
     <head>
+    <a href="../Business/Viewproduct.jsp"><h3>↩️Back</h3></a>
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
         <title>View Stock</title>
     </head>
@@ -26,7 +27,7 @@
                     %>
                 <tr>
                     <td>Date</td>
-                    <td>   <%=re.getString("stock_date")%>  </td>
+                    <td><%=re.getString("stock_date")%>  </td>
                 </tr>
                 <tr>
                     <td>Quantity</td>
